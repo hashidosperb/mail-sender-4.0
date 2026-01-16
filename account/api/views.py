@@ -142,7 +142,8 @@ def send_sms_otp(request,client_pk):
 
         if(template==1):
             message = "Your OTP is : {}\n\nOSPERB INNOVATIONS".format(otp)
-            data = processTextlocalOTP(client_pk,numbers, sender, message)
+            # data = processTextlocalOTP(client_pk,numbers, sender, message)
+            data = processFast2SmsOtp(client_pk,numbers, otp,"176537","OSPERB")
         elif(template==2):
             data = processFast2SmsOtp(client_pk,numbers, otp,"176537","OSPERB")
 
@@ -151,12 +152,15 @@ def send_sms_otp(request,client_pk):
 
         elif(template==4):
             message = "{} is your OTP\n\nOSPERB INNOVATIONS".format(otp)
-            data = processTextlocalOTP(client_pk,numbers, sender, message)
+            # data = processTextlocalOTP(client_pk,numbers, sender, message)
+            data = processFast2SmsOtp(client_pk,numbers, otp,"176537","OSPERB")
         elif(template==5):
-            data = process2factorOTP(client_pk,numbers, otp)
+            # data = process2factorOTP(client_pk,numbers, otp)
+            data = processFast2SmsOtp(client_pk,numbers, otp,"176537","OSPERB")
         else:
             message = "{} is the OTP to access the app.\n\nsent via OSPERB".format(otp)
-            data = processTextlocalOTP(client_pk,numbers, sender, message)
+            # data = processTextlocalOTP(client_pk,numbers, sender, message)
+            data = processFast2SmsOtp(client_pk,numbers, otp,"176537","OSPERB")
         
         if(data['response'] == 'Success'):
             status_code = status.HTTP_200_OK
