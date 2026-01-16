@@ -273,7 +273,7 @@ def processFast2SmsOtp(client_pk,numbers, otp,message_id,sender_id):
             sms = json.loads(sendFast2SmsOtp(numbers, otp,message_id,sender_id))
             data['sms_response'] = sms
             if(sms["message"][0]=="SMS sent successfully."):
-                cost = 40
+                cost = 50
                 sms_client.unpaid_sms += cost
                 sms_client.total_sms += cost
                 sms_client.balance -= cost
@@ -292,12 +292,12 @@ def processFast2SmsOtp(client_pk,numbers, otp,message_id,sender_id):
 
                 data['response'] = 'Success'
                 data['status'] = 'true'
-                data['balance'] = sms_client.balance 
+                data['balance'] = sms_client.balance/100 
         
             else:
                 data['response'] = 'Failed'
                 data['status'] = 'false'
-                data['balance'] = sms_client.balance 
+                data['balance'] = sms_client.balance/100 
 
         else:
             data['response'] = 'Insufficient credits'
@@ -443,7 +443,7 @@ def sendBalanceAlert(sms_client):
     <br><br>If you have any questions or need assistance, please feel free to reach out to our support team.
     <br><br>Best regards,
     <br><br><br><b>OSPERB INNOVATIONS.</b>
-    """.format(sms_client.company,sms_client.balance)
+    """.format(sms_client.company,sms_client.balance/100)
     sendMail(subject, html_data, sms_client.email,"osperb.com")
 
 
